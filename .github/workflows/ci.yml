@@ -16,6 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -51,6 +56,7 @@ jobs:
         with:
           name: project-archive
           path: project.zip
+        continue-on-error: false
       
       - name: SonarCloud Scan
         env:
