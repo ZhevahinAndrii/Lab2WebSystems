@@ -5,7 +5,8 @@ on:
     branches:
       - main
   pull_request:
-      
+    branches:
+      - main
 
 jobs:
   build:
@@ -40,3 +41,13 @@ jobs:
         with:
           name: test-results
           path: test-results.xml
+      
+      - name: Archive project
+        run: | 
+          zip -r project.zip .
+      
+      - name: Upload project archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: project-archive
+          path: project.zip
